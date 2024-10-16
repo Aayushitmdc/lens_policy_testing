@@ -1,0 +1,78 @@
+tables:
+
+  - name: customer
+    sql: {{ load_sql('customer') }}
+    description: Table containing information about customer records.
+    public: true
+    meta:
+      export_to_board: true
+
+    dimensions:
+      - name: first_name
+        type: string
+        description: First name of the customer.
+        sql: first_name
+
+      - name: last_name
+        type: string
+        description: Last name of the customer.
+        sql: last_name
+
+      - name: gender
+        type: string
+        description: Gender of the customer.
+        sql: gender
+
+      - name: email_id
+        type: string
+        description: Email address of the customer.
+        sql: email_id
+
+
+    #   - name: annual_income
+    #     type: string
+    #     description: Annual income of the customer.
+    #     sql: annual_income
+    #     meta:
+    #       secure:
+    #         func: redact
+    #         user_groups:
+    #           includes: "*" # secure for everyone
+    #           excludes:
+    #             - type_analyst   # except default        
+
+
+
+    # segments:
+      # - name: minor_age_customer
+      #   public: true      
+      #   sql: "{TABLE}.age_group = 'Under 18'"
+      #   meta:
+      #     secure:
+      #       user_groups: 
+      #         includes:
+      #           - default
+      #         excludes:
+      #           - type_analyst      
+
+
+      # - name: loyal_customers
+      #   public: true
+      #   sql: "{TABLE}.degree_of_loyalty = 'Hard Core Loyals' " 
+      #   meta:
+      #     secure:
+      #       user_groups: 
+      #         includes:
+      #           - type_analyst
+      #         excludes:
+      #           - default        
+
+      # - name: young_female_customers
+      #   public: true
+      #   sql: "{TABLE}.gender='FEMALE' and {TABLE}.age <30 and {TABLE}.age>20"
+
+    
+      
+      
+      
+     
