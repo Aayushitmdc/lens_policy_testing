@@ -23,10 +23,10 @@ tables:
         description: Gender of the customer.
         sql: gender
 
-      - name: email_id
+      - name: email
         type: string
         description: Email address of the customer.
-        sql: email_id
+        sql: email
 
 
     #   - name: annual_income

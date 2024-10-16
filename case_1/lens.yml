@@ -7,9 +7,9 @@ tags:
 description: A sample lens that contains three entities, a view and a few measures for users to test
 lens:
   compute: runnable-default
-  # secrets:
-  #   - name: githubr
-  #     allKeys: true
+  secrets:
+    - name: githubr
+      allKeys: true
   source:
     type: minerva
     name: minervac
@@ -66,8 +66,8 @@ lens:
 
   iris:
     logLevel: info  
-    envs:
-      LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
+    # envs:
+    #   LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
       # LENS2_SOURCE_WORKSPACE_NAME: public
       # LENS2_SOURCE_FLASH_PORT: 5433
     resources: # optional
@@ -78,5 +78,5 @@ lens:
         cpu: 6000m
         memory: 6048Mi
 
-  metric:
-    loglevel: info
+  # metric:
+  #   loglevel: info

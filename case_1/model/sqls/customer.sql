@@ -2,6 +2,6 @@ SELECT
   first_name,
   last_name,
   gender,
-  email_id
+  email
 FROM
-  "postgres"."sandox".customers_masked
+  postgres.sandbox.customers_masked
