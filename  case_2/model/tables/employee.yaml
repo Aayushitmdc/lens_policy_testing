@@ -11,35 +11,35 @@ tables:
       - name: first_name
         type: string
         description: First name of the employee.
-        column_name: first_name
+        column: first_name
 
       - name: last_name
         type: string
         description: Last name of the employee.
-        column_name: last_name
+        column: last_name
 
       - name: department
         type: string
         description: department of the employee.
-        column_name: department
+        column: department
 
       - name: country
         type: string
         description: country of the employee.
-        column_name: country
+        column: country
 
       - name: email
         type: string
         description: Email address of the employee.
-        column_name: email
+        column: email
 
-      - name: last_pref
+      - name: last_perf
         type: number
         description: last_pref  of the employee.
-        column_name: last_pref
+        column: last_perf
 
       - name: salary
-        column_name: salary
+        column: salary
         type: number
         description: salaries
 
@@ -47,19 +47,13 @@ tables:
       - name: seniority
         type: number
         description: seniority  of the employee.
-        column_name: seniority
-
-
-      - name: salary_positioning
-        type: number
-        description: salary_positioning of the employee.
-        column: salary_positioning
+        column: seniority
 
 
     measures:
       - name: avg_salary
-        sql: avg(salary)
-        type: number
+        sql: salary
+        type: avg
         description: Salary address of the employee.
 
 

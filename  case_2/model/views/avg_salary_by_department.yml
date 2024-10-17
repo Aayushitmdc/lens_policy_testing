@@ -1,5 +1,5 @@
 views:
-  - name: Average Salary by Department
+  - name: avg_salary_by_department
     description: This metric tracks the percentage of leads or prospects who successfully converted into paying employees over a month time period. It provides insights into the effectiveness of marketing efforts and sales processes.
     public: true
     meta:
