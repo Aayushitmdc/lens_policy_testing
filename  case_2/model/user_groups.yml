@@ -1,5 +1,4 @@
 user_groups:
-  
   - name: type_analyst
     api_scopes:
       - meta

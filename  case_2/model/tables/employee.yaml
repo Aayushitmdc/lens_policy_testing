@@ -11,50 +11,68 @@ tables:
       - name: first_name
         type: string
         description: First name of the employee.
-        sql: first_name
+        column_name: first_name
 
       - name: last_name
         type: string
         description: Last name of the employee.
-        sql: last_name
+        column_name: last_name
 
       - name: department
         type: string
         description: department of the employee.
-        sql: department
+        column_name: department
 
       - name: country
         type: string
         description: country of the employee.
-        sql: country
+        column_name: country
 
       - name: email
         type: string
         description: Email address of the employee.
-        sql: email
+        column_name: email
 
       - name: last_pref
         type: number
         description: last_pref  of the employee.
-        sql: last_pref
+        column_name: last_pref
+
+      - name: salary
+        column_name: salary
+        type: number
+        description: salaries
 
 
       - name: seniority
         type: number
         description: seniority  of the employee.
-        sql: seniority
+        column_name: seniority
 
 
       - name: salary_positioning
         type: number
         description: salary_positioning of the employee.
-        sql: seniority
+        column: salary_positioning
+
 
     measures:
       - name: avg_salary
         sql: avg(salary)
         type: number
         description: Salary address of the employee.
+
+
+      - name: total_countries
+        sql: country
+        type: count(distinct)
+        description: total countires 
+
+      - name: total_countries
+        sql: country
+        type: count_distinct
+        description: total countires 
+
 
     segments:
       - name: usa
