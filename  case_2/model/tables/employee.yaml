@@ -65,32 +65,7 @@ tables:
 
       - name: total_countries
         sql: country
-        type: count(distinct)
-        description: total countires 
-
-      - name: total_countries
-        sql: country
         type: count_distinct
         description: total countires 
 
-
-    segments:
-      - name: usa
-        sql: "{TABLE}.country = 'USA'"
-
-      - name: UK
-        sql: "{TABLE}.country = 'UK'"
-
-      - name: Canada
-        sql: "{TABLE}.country = 'Canada'"
       
-    # segments:
-    #   - name: usa
-    #     sql: "{TABLE}.country = 'USA'"    
-        # meta:
-        #   secure:
-        #     user_groups: 
-        #       includes:
-        #         - nonproof_analyst
-        #       excludes:
-        #         - default
