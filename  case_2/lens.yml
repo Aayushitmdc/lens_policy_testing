@@ -1,0 +1,82 @@
+version: v1alpha
+name: "customer-analysis"
+layer: user
+type: lens
+tags:
+  - lens
+description: A sample lens that contains three entities, a view and a few measures for users to test
+lens:
+  compute: runnable-default
+  secrets:
+    - name: githubr
+      allKeys: true
+  source:
+    type: minerva
+    name: minervac
+    catalog: postgres #icebase
+  repo:
+    url: https://github.com/Aayushitmdc/lens_policy_testing
+    lensBaseDir: lens_policy_testing/case_1/model     # location where lens models are kept in the repo
+    secretId: githubr 
+    syncFlags:
+      - --ref=main
+  api:
+    replicas: 1
+    logLevel: debug
+    envs:
+      # LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
+      # LENS2_SOURCE_WORKSPACE_NAME: public
+      # LENS2_SOURCE_FLASH_PORT: 5433
+    resources: # optional
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 2000m
+        memory: 2048Mi
+
+  worker:
+    replicas: 1
+    logLevel: debug
+    envs:
+      # LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
+      # LENS2_SOURCE_WORKSPACE_NAME: public
+      # LENS2_SOURCE_FLASH_PORT: 5433
+    resources: # optional
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 6000m
+        memory: 6048Mi
+
+  router:
+    logLevel: info
+    envs:
+      LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
+      # LENS2_SOURCE_WORKSPACE_NAME: public
+      # LENS2_SOURCE_FLASH_PORT: 5433
+    resources: # optional
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 6000m
+        memory: 6048Mi
+
+  iris:
+    logLevel: info  
+    # envs:
+    #   LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
+      # LENS2_SOURCE_WORKSPACE_NAME: public
+      # LENS2_SOURCE_FLASH_PORT: 5433
+    resources: # optional
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 6000m
+        memory: 6048Mi
+
+  # metric:
+  #   loglevel: info

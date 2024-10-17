@@ -1,0 +1,78 @@
+tables:
+
+  - name: employee
+    sql: {{ load_sql('employee') }}
+    description: Table containing information about employee records.
+    public: true
+    meta:
+      export_to_board: true
+
+    dimensions:
+      - name: first_name
+        type: string
+        description: First name of the employee.
+        sql: first_name
+
+      - name: last_name
+        type: string
+        description: Last name of the employee.
+        sql: last_name
+
+      - name: department
+        type: string
+        description: department of the employee.
+        sql: department
+
+      - name: country
+        type: string
+        description: country of the employee.
+        sql: country
+
+      - name: email
+        type: string
+        description: Email address of the employee.
+        sql: email
+
+      - name: last_pref
+        type: number
+        description: last_pref  of the employee.
+        sql: last_pref
+
+
+      - name: seniority
+        type: number
+        description: seniority  of the employee.
+        sql: seniority
+
+
+      - name: salary_positioning
+        type: number
+        description: salary_positioning of the employee.
+        sql: seniority
+
+    measures:
+      - name: avg_salary
+        sql: avg(salary)
+        type: number
+        description: Salary address of the employee.
+
+    segments:
+      - name: usa
+        sql: "{TABLE}.country = 'USA'"
+
+      - name: UK
+        sql: "{TABLE}.country = 'UK'"
+
+      - name: Canada
+        sql: "{TABLE}.country = 'Canada'"
+      
+    # segments:
+    #   - name: usa
+    #     sql: "{TABLE}.country = 'USA'"    
+        # meta:
+        #   secure:
+        #     user_groups: 
+        #       includes:
+        #         - nonproof_analyst
+        #       excludes:
+        #         - default

@@ -1,0 +1,21 @@
+views:
+  - name: conversion_rate
+    description: This metric tracks the percentage of leads or prospects who successfully converted into paying customers over a month time period. It provides insights into the effectiveness of marketing efforts and sales processes.
+    public: true
+    meta:
+      title: Conversion Rate
+      tags: 
+        - DPDomain.HRAnalysis 
+        - DPUsecase.Employee Analysis
+        - DPTier.Business Certified
+      metric:
+        expression: "*/5  * * * *"
+        timezone: "UTC"
+        window: "month" 
+
+    tables:
+      - join_path: sales
+        prefix: true
+        includes:
+          - avg_salary
+          - department
