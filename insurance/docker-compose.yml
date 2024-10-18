@@ -1,0 +1,36 @@
+version: "2.2"
+
+x-lens2-environment: &lens2-environment
+  # DataOS
+  DATAOS_FQDN: splendid-shrew.dataos.app  
+  # Overview
+  LENS2_NAME: employee
+  LENS2_DESCRIPTION: "Inusrance"
+  LENS2_TAGS: "insurance insights"
+  LENS2_AUTHORS: aayushisolanki
+  LENS2_SOURCE_TYPE: depot
+  LENS2_SOURCE_NAME: snowflake  #cluster_name
+  # LENS2_SOURCE_CATALOG_NAME:  #icebase
+  DATAOS_RUN_AS_APIKEY: dG9rZW5fc3VpdGFibHlfbWFpbmx5X2Zhc3Rfc3VuYmVhbS43ZWIxMjlmZS0zODZkLTQ5YjMtODUxOS01M2UyZTg5MTIzMGM=
+    # Log
+  LENS2_LOG_LEVEL: error
+  CACHE_LOG_LEVEL: error
+  # Operation
+  
+  LENS2_DEV_MODE: "true"  
+  LENS2_REFRESH_WORKER: "true"
+  LENS2_SCHEMA_PATH: model
+  LENS2_PG_SQL_PORT: 5432
+
+services:
+  api:
+    restart: always
+    image: rubiklabs/lens2:0.35.60-8 #.41-05 or .18-50  0.35.
+    ports:
+      - 4000:4000
+      - 25432:5432
+      - 13306:13306
+    environment:
+      <<: *lens2-environment   
+    volumes:
+      - ./model:/etc/dataos/work/model
