@@ -1,0 +1,45 @@
+tables:
+- name: payment_status
+  sql: {{ load_sql('payment_status') }}
+  public: true
+  joins: []
+  dimensions:
+  - name: payment_year
+    column: year(payment_date)
+    type: number
+    description: Year the payment was made.
+  - name: payment_month
+    column: month(payment_date)
+    type: number
+    description: Month the payment was made.
+  - name: payment_id
+    column: payment_id
+    type: string
+    description: Unique identifier for the payment
+    primary_key: true
+    public: true
+  - name: policy_id
+    column: policy_id
+    type: string
+    description: Identifier linking the payment to the policy
+  - name: payment_date
+    column: payment_date
+    type: time
+    description: Date when the payment was made
+  - name: status
+    column: payment_status
+    type: string
+    description: Status of the payment (e.g., completed, pending)
+  measures:
+  - name: total_payments
+    sql: payment_id
+    type: count_distinct
+    description: Total number of unique payments.
+  - name: count_of_payments_paid
+    sql: 'COUNT(CASE WHEN status = ''paid'' THEN 1 END) '
+    type: number
+    description: Count of payments that are completed.
+  - name: count_of_unpaid_payments
+    sql: 'COUNT(CASE WHEN status = ''unpaid'' THEN 1 END) '
+    type: number
+    description: Count of payments that are unpaid.

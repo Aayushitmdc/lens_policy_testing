@@ -1,0 +1,51 @@
+views:
+  - name: policy_analysis
+    description: View containing policy analysis
+    public: true
+    meta:
+      export_to_iris: true
+      iris:
+        timeseries: policy_data.start_date
+        available_time_zones:
+          - America/Los_Angeles
+          - America/Chicago
+          - America/New_York
+          - Europe/London
+          - Europe/Paris
+          - Asia/Jerusalem
+          - Europe/Moscow
+          - Asia/Kolkata
+          - Asia/Shanghai
+          - Asia/Tokyo
+          - Australia/Sydney
+
+    tables:
+      - join_path: customers
+        prefix: true
+        includes:
+          - customer_id
+          - state
+          - zipcode
+          - income
+          - nps_score
+          - family_size
+          - total_customers
+
+
+      - join_path: policy_data
+        prefix: true
+        includes:
+          - policy_type
+          - start_date
+          - end_date
+          - is_active
+          - policy_value
+          - policy_id
+          - total_policies 
+          - policy_year
+          - policy_duration
+
+          
+
+
+      

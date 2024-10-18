@@ -1,0 +1,108 @@
+tables:
+- name: customers
+  sql: {{ load_sql('customers') }}
+  public: true
+  joins:
+  - name: policy_data
+    relationship: one_to_many
+    sql: '{TABLE.customer_id} = {policy_data.customer_id}'
+  
+  dimensions:
+  - name: customer_age_group
+    column: 'CASE  WHEN age < 25 THEN ''Under 25''  WHEN age BETWEEN 25 AND 44 THEN
+      ''25-44''  WHEN age BETWEEN 45 AND 64 THEN ''45-64''  ELSE ''65+'' END '
+    type: string
+    description: Categorizes customers into age groups for demographic analysis.
+  - name: customer_state
+    column: state
+    type: string
+    description: State in which the customer resides, useful for regional analysis.
+  - name: customer_since_year
+    column: year(customer_since)
+    type: number
+    description: Year in which the customer first engaged.
+  - name: family_size_category
+    column: 'CASE  WHEN family_size = 1 THEN ''Single''  WHEN family_size = 2 THEN
+      ''Couple''  WHEN family_size > 2 THEN ''Family'' END '
+    type: string
+    description: Categorizes customers based on family size.
+  - name: customer_id
+    column: customer_id
+    type: string
+    description: Unique identifier for the customer
+    primary_key: true
+    public: true
+  - name: first_name
+    column: first_name
+    type: string
+    description: First name of the customer
+  - name: last_name
+    column: last_name
+    type: string
+    description: Last name of the customer
+  - name: gender
+    column: gender
+    type: string
+    description: Gender of the customer
+  - name: age
+    column: age
+    type: number
+    description: Age of the customer
+  - name: address
+    column: address
+    type: string
+    description: Address of the customer
+  - name: city
+    column: city
+    type: string
+    description: City of residence
+  - name: state
+    column: state
+    type: string
+    description: State of residence (converted to full name)
+  - name: zipcode
+    column: zipcode
+    type: number
+    description: Zipcode of residence
+  - name: email
+    column: email
+    type: string
+    description: Email address of the customer
+  - name: phone_number
+    column: phone_number
+    type: string
+    description: Contact phone number of the customer
+  - name: customer_since
+    column: customer_since
+    type: time
+    description: Timestamp indicating when the customer first engaged
+  - name: income
+    column: income
+    type: number
+    description: Annual income of the customer
+  - name: agent_id
+    column: agent_id
+    type: string
+    description: "Identifier for the customer\u2019s assigned agent"
+  - name: nps_score
+    column: nps_score
+    type: number
+    description: Net Promoter Score (NPS) of the customer
+  - name: family_size
+    column: family_size
+    type: number
+    description: Number of family members
+  measures:
+  - name: total_customers
+    sql: customer_id
+    type: count_distinct
+    description: Total number of unique customers
+  - name: average_nps_score
+    sql: AVG(nps_score)
+    type: number
+    description: Average Net Promoter Score across all customers
+  - name: total_income
+    sql: SUM(income)
+    type: number
+    description: Total income of all customers combined
+

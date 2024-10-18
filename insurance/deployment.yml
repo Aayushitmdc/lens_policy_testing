@@ -1,0 +1,76 @@
+name: c360-insurance
+version: v1alpha
+type: lens
+tags:
+  - lens
+description: Data model for insurance intelligence
+owner: khushibedar
+workspace: public
+lens:
+  compute: runnable-default
+  runAsUser: khushibedar
+  secrets:
+    - name: sales360
+      allKeys: true
+  source:
+    type: minerva
+    name: system
+    catalog: icebase
+  repo:
+    url: https://bitbucket.org/rubik_/solutions
+    lensBaseDir: >-
+      solutions/customer-solution-demo/insurance-intelligence/output/dph2/c_360_dp/bundle/lens2/model
+    syncFlags:
+      - '--ref=refactor-demos'
+  api:
+    logLevel: info
+    replicas: 1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 2000m
+        memory: 2048Mi
+    envs:
+      LENS2_SCHEDULED_REFRESH_TIMEZONES: '*************************************'
+  router:
+    logLevel: info
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 2000m
+        memory: 3048Mi
+    envs:
+      LENS2_SCHEDULED_REFRESH_TIMEZONES: '*************************************'
+  worker:
+    logLevel: debug
+    replicas: 2
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 2000m
+        memory: 3048Mi
+    envs:
+      LENS2_SCHEDULED_REFRESH_TIMEZONES: '*************************************'
+  iris:
+    logLevel: info
+    replicas: 1
+    resources:
+      requests:
+        cpu: 200m
+        memory: 256Mi
+      limits:
+        cpu: 4600m
+        memory: 8240Mi
+    envs:
+      LENS2_SCHEDULED_REFRESH_TIMEZONES: '*************************************'
+stamp: '-r1k0'
+generation: 1
+uid: e8728c6a-d395-4c91-be0c-1c9404da7c9f
+created: '2024-10-17T12:30:33Z'
+status: {}

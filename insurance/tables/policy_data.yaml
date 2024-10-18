@@ -1,0 +1,80 @@
+tables:
+- name: policy_data
+  sql: {{ load_sql('policy_data') }}
+  public: true
+  joins:
+  - name: claims_data
+    relationship: one_to_many
+    sql: '{TABLE.policy_id} = {claims_data.policy_id}'
+  - name: payment_status
+    relationship: one_to_one
+    sql: '{TABLE.policy_id} = {payment_status.policy_id}'
+  dimensions:
+
+  - name: is_active
+    column: is_active
+    type: string
+    description: Indicates if the policy is currently active
+  - name: policy_value
+    column: policy_value
+    type: number
+    description: Total value of the policy  
+
+  - name: start_date
+    column: start_date
+    type: time
+    description: Start date of the policy
+
+  - name: end_date
+    column: end_date
+    type: time
+    description: End date of the policy
+
+  - name: policy_year
+    column: year(start_date)
+    type: number
+    description: Year the policy started.
+
+  - name: policy_duration
+    column: DATE_DIFF('day', CAST(start_date AS date), CAST(end_date AS date)) 
+    type: number
+    description: Duration of the policy in days.
+
+  - name: policy_active_status
+    column: CASE  WHEN is_active = 'True' THEN 'Active'  ELSE 'Inactive' END 
+    type: string
+    description: Indicates if the policy is active or inactive.
+  - name: policy_id
+    column: policy_id
+    type: string
+    description: Unique identifier for the insurance policy
+    primary_key: true
+    public: true
+  - name: customer_id
+    column: customer_id
+    type: string
+    description: Identifier linking the policy to the customer
+  - name: policy_type
+    column: policy_type
+    type: string
+    description: Type of the policy (e.g., life, health, auto)
+
+
+
+  measures:
+  - name: total_policy_value
+    sql: SUM(policy_value)
+    type: number
+    description: Total value of all policies.
+  - name: total_policies
+    sql: policy_id
+    type: count_distinct
+    description: Total number of policies issued.
+  - name: active_policies
+    sql: COUNT(CASE WHEN is_active = 'True' THEN 1 END) 
+    type: number
+    description: Total number of active policies.
+  - name: inactive_policies
+    sql: COUNT(CASE WHEN is_active = 'False' THEN 1 END) 
+    type: number
+    description: Total number of inactive policies.

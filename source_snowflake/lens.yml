@@ -1,10 +1,12 @@
 version: v1alpha
-name: "employee-analysis"
+name: employee-analysis-01
 layer: user
 type: lens
 tags:
   - lens
 description: A sample lens that contains three entities, a view and a few measures for users to test
+owner: aayushisolanki
+workspace: curriculum
 lens:
   compute: runnable-default
   secrets:

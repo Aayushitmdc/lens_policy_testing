@@ -1,0 +1,51 @@
+views:
+  - name: claim_analysis
+    description: View containing policy analysis
+    public: true
+    meta:
+      export_to_iris: true
+      iris:
+        timeseries: claims_data.claim_raised_date
+        available_time_zones:
+          - America/Los_Angeles
+          - America/Chicago
+          - America/New_York
+          - Europe/London
+          - Europe/Paris
+          - Asia/Jerusalem
+          - Europe/Moscow
+          - Asia/Kolkata
+          - Asia/Shanghai
+          - Asia/Tokyo
+          - Australia/Sydney
+
+    tables:
+      - join_path: claims_data
+        prefix: true
+        includes:
+          - claim_raised_date
+          - claim_year
+          - claim_month
+          - claim_id
+          - claim_type
+          - claim_amount
+          - claim_status
+          - total_claims
+
+
+      - join_path: policy_data
+        prefix: true
+        includes:
+          - policy_type
+          - start_date
+          - end_date
+          - is_active
+          - policy_value
+          - policy_id
+          - total_policies 
+          - policy_year
+          - policy_duration
+          
+
+
+      
