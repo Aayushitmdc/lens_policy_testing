@@ -25,7 +25,7 @@ x-lens2-environment: &lens2-environment
 services:
   api:
     restart: always
-    image: rubiklabs/lens2:0.35.60-8 #.41-05 or .18-50  0.35.
+    image: rubiklabs/lens2:0.35.60-9    #.41-05 or .18-50  0.35.
     ports:
       - 4000:4000
       - 25432:5432

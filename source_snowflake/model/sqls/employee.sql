@@ -1,6 +1,6 @@
 select
   FIRST_NAME,
-  LAST_NAME.
+  LAST_NAME,
   SALARY,
   EMAIL,
   DEPARTMENT,
@@ -8,4 +8,4 @@ select
   COUNTRY,
   LAST_PERF
 FROM
-  "snowflake"."PUBLIC".EMPLOYEE
+  "PUBLIC".EMPLOYEE
