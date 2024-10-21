@@ -6,9 +6,11 @@ tables:
   - name: claims_data
     relationship: one_to_many
     sql: '{TABLE.policy_id} = {claims_data.policy_id}'
+
   - name: payment_status
     relationship: one_to_one
     sql: '{TABLE.policy_id} = {payment_status.policy_id}'
+
   dimensions:
 
   - name: is_active
@@ -44,16 +46,19 @@ tables:
     column: CASE  WHEN is_active = 'True' THEN 'Active'  ELSE 'Inactive' END 
     type: string
     description: Indicates if the policy is active or inactive.
+
   - name: policy_id
     column: policy_id
     type: string
     description: Unique identifier for the insurance policy
     primary_key: true
     public: true
+
   - name: customer_id
     column: customer_id
     type: string
     description: Identifier linking the policy to the customer
+
   - name: policy_type
     column: policy_type
     type: string
@@ -66,14 +71,17 @@ tables:
     sql: SUM(policy_value)
     type: number
     description: Total value of all policies.
+
   - name: total_policies
     sql: policy_id
     type: count_distinct
     description: Total number of policies issued.
+
   - name: active_policies
     sql: COUNT(CASE WHEN is_active = 'True' THEN 1 END) 
     type: number
     description: Total number of active policies.
+    
   - name: inactive_policies
     sql: COUNT(CASE WHEN is_active = 'False' THEN 1 END) 
     type: number

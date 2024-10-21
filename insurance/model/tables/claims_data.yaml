@@ -14,24 +14,29 @@ tables:
     column: year(claim_raised_date)
     type: number
     description: Year the claim was raised.
+
   - name: claim_month
     column: month(claim_raised_date)
     type: number
     description: Month the claim was raised.
+
   - name: claim_id
     column: claim_id
     type: string
     description: Unique identifier for the claim
     primary_key: true
     public: true
+
   - name: policy_id
     column: policy_id
     type: string
     description: Identifier linking the claim to the policy
+
   - name: claim_type
     column: claim_type
     type: string
     description: Type of claim (e.g., accident, theft)
+
   - name: claim_amount
     column: claim_amount
     type: number
@@ -41,27 +46,33 @@ tables:
     column: claim_status
     type: string
     description: Status of the claim (e.g., pending, approved, rejected)
+
   - name: claim_description
     column: claim_description
     type: string
     description: Detailed description of the claim
+
   - name: claim_category
     column: claim_category
     type: string
     description: Category of the claim (e.g., medical, property)
+
   # - name: weatherid
   #   column: weatherid
   #   type: number
   #   description: Identifier for associated weather data (if applicable)
+  
   measures:
   - name: total_claim_amount
     sql: SUM(claim_amount)
     type: number
     description: Total amount claimed across all claims.
+
   - name: total_claims
     sql: claim_id
     type: count_distinct
     description: Total number of unique claims.
+    
   - name: average_claim_amount
     sql: AVG(claim_amount)
     type: number
