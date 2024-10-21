@@ -4,4 +4,4 @@ SELECT
   cast (payment_date as timestamp) payment_date,
   payment_status
 FROM
-   "snowflake"."PUBLIC".PAYMENT_STATUS
+   "PUBLIC".PAYMENT_STATUS

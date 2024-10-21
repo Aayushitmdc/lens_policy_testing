@@ -1,27 +1,25 @@
-name: c360-insurance
+name: insurance-lens
 version: v1alpha
 type: lens
 tags:
   - lens
 description: Data model for insurance intelligence
-owner: khushibedar
-workspace: public
+owner: aayushisolanki
+workspace: curriculum
 lens:
   compute: runnable-default
-  runAsUser: khushibedar
   secrets:
-    - name: sales360
+    - name: githubr
       allKeys: true
   source:
-    type: minerva
-    name: system
-    catalog: icebase
+    type: depot
+    name: snowflake  #name of the depot
+    # catalog: icebase
   repo:
-    url: https://bitbucket.org/rubik_/solutions
-    lensBaseDir: >-
-      solutions/customer-solution-demo/insurance-intelligence/output/dph2/c_360_dp/bundle/lens2/model
+    url: https://github.com/Aayushitmdc/lens_policy_testing
+    lensBaseDir: lens_policy_testing/insurance/model
     syncFlags:
-      - '--ref=refactor-demos'
+      - '--ref=main'
   api:
     logLevel: info
     replicas: 1
@@ -33,7 +31,7 @@ lens:
         cpu: 2000m
         memory: 2048Mi
     envs:
-      LENS2_SCHEDULED_REFRESH_TIMEZONES: '*************************************'
+      LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
   router:
     logLevel: info
     resources:
@@ -44,7 +42,7 @@ lens:
         cpu: 2000m
         memory: 3048Mi
     envs:
-      LENS2_SCHEDULED_REFRESH_TIMEZONES: '*************************************'
+      LENS2_SCHEDULED_REFRESH_TIMEZONES:  "UTC,America/Vancouver,America/Toronto"
   worker:
     logLevel: debug
     replicas: 2
@@ -56,7 +54,7 @@ lens:
         cpu: 2000m
         memory: 3048Mi
     envs:
-      LENS2_SCHEDULED_REFRESH_TIMEZONES: '*************************************'
+      LENS2_SCHEDULED_REFRESH_TIMEZONES:  "UTC,America/Vancouver,America/Toronto"
   iris:
     logLevel: info
     replicas: 1
@@ -68,9 +66,4 @@ lens:
         cpu: 4600m
         memory: 8240Mi
     envs:
-      LENS2_SCHEDULED_REFRESH_TIMEZONES: '*************************************'
-stamp: '-r1k0'
-generation: 1
-uid: e8728c6a-d395-4c91-be0c-1c9404da7c9f
-created: '2024-10-17T12:30:33Z'
-status: {}
+      LENS2_SCHEDULED_REFRESH_TIMEZONES:  "UTC,America/Vancouver,America/Toronto"

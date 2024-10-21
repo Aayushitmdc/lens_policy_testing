@@ -8,4 +8,6 @@ SELECT
   claim_description,
   claim_category
 FROM
-  "snowflake"."PUBLIC".CLAIMS_DATA
+  "PUBLIC".CLAIMS_DATA
+
+-- the query will also run on the source and it must run , that means query must be changed to the source dialect

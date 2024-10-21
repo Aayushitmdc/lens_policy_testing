@@ -7,4 +7,4 @@ SELECT
   is_active,
   cast (policy_value as double) policy_value
 FROM
-   "snowflake"."PUBLIC".POLICY_DATA
+   "PUBLIC".POLICY_DATA

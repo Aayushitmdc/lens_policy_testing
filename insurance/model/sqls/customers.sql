@@ -28,4 +28,4 @@ SELECT
   cast(nps_score as int) nps_score,
   cast(family_size as int) family_size
 FROM
-  "snowflake"."PUBLIC".CUSTOMERS
+  "PUBLIC".CUSTOMERS
