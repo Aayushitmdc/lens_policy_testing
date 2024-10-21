@@ -86,9 +86,9 @@ tables:
         func: redact
         user_groups:
           includes:
-            - analyst
-          excludes:
             - default
+          excludes:
+            - analyst
 
   - name: phone_number
     column: phone_number
